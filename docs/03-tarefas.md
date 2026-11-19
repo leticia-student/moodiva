@@ -53,7 +53,7 @@
 - **Relacionado:** RN01–RN37 · Seção 2.4
 - **Commit:** `feat: implementa regras de negocio com testes`
 
-### [ ] T06 — Casos de uso + testes
+### [x] T06 — Casos de uso + testes
 - **Descrição:** casos de uso da seção 2.4, incluindo o motor de recomendação (seção 3.4), com fakes em memória.
 - **Pronto quando:** testes de motor, cache, sessão e salvas passam.
 - **Relacionado:** RF01–RF26, RN18–RN26 · Seções 2.4, 3.4, 6
