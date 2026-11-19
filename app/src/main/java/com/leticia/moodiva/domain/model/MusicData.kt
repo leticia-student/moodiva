@@ -8,6 +8,12 @@ data class ArtistTag(
     val count: Int,
 )
 
+/** Gêneros (da lista fechada) e nacionalidade de um artista, calculados pelo `ArtistClassifier`. */
+data class ArtistProfile(
+    val genres: Set<Genre>,
+    val isBrazilian: Boolean,
+)
+
 /** Artista similar, com o grau de semelhança `match` (0 a 1), de `artist.getSimilar`. */
 data class SimilarArtist(
     val name: String,
