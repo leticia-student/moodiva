@@ -68,3 +68,16 @@
 | Falhas | 0 |
 | Ignorados | 0 |
 | Correções aplicadas | Nenhuma |
+
+---
+
+## 2026-11-19 19:59 — T10: login e cadastro (AuthViewModel)
+
+| Item | Valor |
+|---|---|
+| Comando | `./gradlew testDebugUnitTest` |
+| Total | 125 |
+| Aprovados | 125 |
+| Falhas | 0 |
+| Ignorados | 0 |
+| Correções aplicadas | Nenhuma |

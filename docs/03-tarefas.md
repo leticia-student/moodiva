@@ -81,7 +81,7 @@
 - **Relacionado:** RF04, RF22 · Seção 9.1
 - **Commit:** `feat: adiciona navegacao e estrutura raiz do app`
 
-### [ ] T10 — Login e cadastro
+### [x] T10 — Login e cadastro
 - **Relacionado:** RF01–RF03, CA01–CA04 · **Commit:** `feat: adiciona login e cadastro locais`
 
 ### [ ] T11 — Onboarding (TIPI e gostos)
