@@ -24,8 +24,8 @@
     <string name="auth_email">E-mail</string>
     <string name="auth_password">Senha</string>
     <string name="auth_confirm_password">Repita a senha</string>
-    <string name="auth_show_password">Mostrar senha</string>
-    <string name="auth_hide_password">Ocultar senha</string>
+    <string name="auth_show_password">Mostrar</string>
+    <string name="auth_hide_password">Ocultar</string>
     <string name="auth_sign_in_action">Entrar</string>
     <string name="auth_sign_up_action">Criar conta</string>
     <string name="auth_switch_to_sign_up">Ainda não tem conta? Criar conta</string>
