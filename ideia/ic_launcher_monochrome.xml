@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Versão monocromática (Android 13+, "ícones temáticos").
+     A cor é ignorada: o sistema pinta tudo com a cor do tema do usuário. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:pivotX="54" android:pivotY="54" android:scaleX="0.9" android:scaleY="0.9">
+        <path
+            android:pathData="M33,59 A21,21 0 0,1 75,59"
+            android:strokeColor="#000000"
+            android:strokeWidth="6"
+            android:strokeLineCap="round" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M33,53 h2 a5,5 0 0,1 5,5 v10 a5,5 0 0,1 -5,5 h-2 a5,5 0 0,1 -5,-5 v-10 a5,5 0 0,1 5,-5 z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M73,53 h2 a5,5 0 0,1 5,5 v10 a5,5 0 0,1 -5,5 h-2 a5,5 0 0,1 -5,-5 v-10 a5,5 0 0,1 5,-5 z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M54,70 c-9,-5.5 -9,-13 -4.5,-14 c2.2,0 3.5,1.2 4.5,3.2 c1,-2 2.3,-3.2 4.5,-3.2 c4.5,1 4.5,8.5 -4.5,14 z" />
+    </group>
+</vector>
