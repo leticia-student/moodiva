@@ -160,7 +160,7 @@ Arrays com um único item: o Last.fm às vezes entrega um objeto no lugar de uma
    - os 20 primeiros candidatos passam por `track.getInfo` (capa + tags);
    - o `TasteSourceRanker` ordena por (tem tag do humor ↓, `match` do artista ↓, desempate da Extroversão ↓).
 5. O `RecommendationMerger` junta as fontes: principal primeiro e complemento depois, sem duplicadas (`TrackKey`; empate fica com `MOOD`), até 20.
-6. Falhas parciais: se uma chamada individual (uma tag ou um artista) falhar por erro de rede, a geração inteira falha (tudo ou nada, o cache anterior fica intacto). Erros "não encontrado" só pulam o item.
+6. Falhas: se uma chamada da fonte principal falhar, a geração inteira falha e o cache anterior fica intacto. Se só a fonte de complemento falhar e já houver músicas pelo humor, a lista fica só com elas (melhor do que nenhuma). Erros "não encontrado" só pulam o item.
 7. Concorrência: as chamadas independentes rodam em paralelo com um `Semaphore(4)` (RNF10).
 
 ## 4. Stack e versões
