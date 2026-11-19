@@ -67,7 +67,7 @@
 - **Relacionado:** RNF03, RN27 · Seção 3
 - **Commit:** `feat: adiciona cliente do last.fm com testes de mapeamento`
 
-### [ ] T08 — Room, autenticação local e repositórios + testes
+### [x] T08 — Room, autenticação local e repositórios + testes
 - **Descrição:** entidades, DAOs, `AppDatabase`, `PasswordHasher`, `SessionStore`, implementações dos repositórios, `safeApiCall`/`safeDbCall`; registro no Koin.
 - **Pronto quando:** testes com MockK (Offline First, transação, uid, hash) passam.
 - **Relacionado:** RNF01, RNF08, RNF14, RN16, RN25, RN32 · Seções 5–7
