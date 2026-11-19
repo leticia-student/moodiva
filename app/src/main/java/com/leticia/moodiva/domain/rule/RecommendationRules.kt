@@ -172,10 +172,14 @@ object TasteSourceRanker {
                     .thenByDescending { ExtraversionTiebreak.score(extraversion, tagsOf(it)) },
             )
             .map { candidate ->
+                val details = detailsByKey[candidate.track.key]
                 RecommendedTrack(
-                    track = candidate.track,
+                    // O artist.getTopTracks não traz a duração; o track.getInfo traz.
+                    track = candidate.track.copy(
+                        durationSeconds = details?.track?.durationSeconds ?: candidate.track.durationSeconds,
+                    ),
                     source = TrackSource.TASTE,
-                    coverUrl = detailsByKey[candidate.track.key]?.coverUrl,
+                    coverUrl = details?.coverUrl,
                     coverChecked = candidate.track.key in detailsByKey,
                 )
             }
