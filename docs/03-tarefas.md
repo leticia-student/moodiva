@@ -33,7 +33,7 @@
 - **Relacionado:** RNF05–RNF07 · Seção 9.3
 - **Commit:** `feat: aplica identidade visual e icone do app`
 
-### [ ] T03 — Core, Application e Koin
+### [x] T03 — Core, Application e Koin
 - **Descrição:** `AppResult`, `AppError`, `AppDispatchers`, `NetworkMonitor` + `AndroidNetworkMonitor`; `MoodivaApp` iniciando o Koin; módulos vazios.
 - **Pronto quando:** app inicia com o Koin sem erro.
 - **Relacionado:** RNF01, RNF02 · Seções 2, 10
