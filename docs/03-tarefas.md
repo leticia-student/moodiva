@@ -21,7 +21,7 @@
 
 ## Configuração
 
-### [ ] T01 — Build, dependências e README inicial
+### [x] T01 — Build, dependências e README inicial
 - **Descrição:** `libs.versions.toml` com a stack da seção 4; plugins serialization e KSP; `BuildConfig.LASTFM_API_KEY` a partir do `local.properties`; permissões `INTERNET`, `ACCESS_NETWORK_STATE`, `POST_NOTIFICATIONS`; remover testes de exemplo e Espresso; README inicial.
 - **Pronto quando:** `assembleDebug` compila com todas as dependências.
 - **Relacionado:** RNF03, RNF04 · Seções 1, 4
