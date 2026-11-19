@@ -7,11 +7,14 @@ import java.time.Instant
  * Uma música, identificada por artista + nome.
  *
  * [key] é a identidade normalizada (RN23): "Águas de Março" e "aguas de marco "
- * do mesmo artista têm a mesma chave.
+ * do mesmo artista têm a mesma chave. A duração não faz parte da identidade.
+ *
+ * @property durationSeconds duração em segundos, ou `null` se desconhecida.
  */
 data class Track(
     val name: String,
     val artist: String,
+    val durationSeconds: Int? = null,
 ) {
     val key: String get() = TrackKey.of(artist = artist, name = name)
 }

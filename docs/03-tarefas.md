@@ -61,7 +61,7 @@
 
 ## Data
 
-### [ ] T07 — API do Last.fm, DTOs, interceptor e mappers + testes
+### [x] T07 — API do Last.fm, DTOs, interceptor e mappers + testes
 - **Descrição:** `LastFmApi`, DTOs com `@SerialName`, `LenientStringSerializer`, `SingleOrListSerializer`, `ApiKeyInterceptor`, `RemoteMappers` (duração s/ms, placeholder, `error` 6).
 - **Pronto quando:** testes de parsing com JSON real passam.
 - **Relacionado:** RNF03, RN27 · Seção 3

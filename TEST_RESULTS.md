@@ -29,3 +29,16 @@
 | Falhas | 0 |
 | Ignorados | 0 |
 | Correções aplicadas | Expectativa do teste do complemento corrigida: a escolha espaçada de 8 entre 10 artistas não inclui o 9º; o teste passou a usar o 10º (menor match). |
+
+---
+
+## 2026-11-19 19:46 — T07: cliente do Last.fm (parsing de JSON real, mappers, interceptor)
+
+| Item | Valor |
+|---|---|
+| Comando | `./gradlew testDebugUnitTest` |
+| Total | 96 |
+| Aprovados | 96 |
+| Falhas | 0 |
+| Ignorados | 0 |
+| Correções aplicadas | Nenhuma |
