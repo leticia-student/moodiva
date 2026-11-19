@@ -75,7 +75,7 @@
 
 ## Presentation
 
-### [ ] T09 — Navegação, raiz do app e componentes de estado
+### [x] T09 — Navegação, raiz do app e componentes de estado
 - **Descrição:** rotas, `MoodivaNavHost`, `MoodivaAppViewModel` (sessão + conexão), splash, banner offline, Loading/Empty/Error, `ErrorMessageMapper`.
 - **Pronto quando:** app navega para Auth sem sessão; testes do ViewModel raiz passam.
 - **Relacionado:** RF04, RF22 · Seção 9.1
