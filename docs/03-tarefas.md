@@ -27,7 +27,7 @@
 - **Relacionado:** RNF03, RNF04 · Seções 1, 4
 - **Commit:** `chore: configura dependencias e chave do last.fm`
 
-### [ ] T02 — Tema da identidade visual e ícone
+### [x] T02 — Tema da identidade visual e ícone
 - **Descrição:** `presentation/theme/` (Color, Type, Theme, Dimens), `themes.xml` sem barra de ação, ícone adaptativo de `docs/`, ícones vetoriais (nota musical, nuvem cortada, fone).
 - **Pronto quando:** app abre com o tema; previews claro/escuro.
 - **Relacionado:** RNF05–RNF07 · Seção 9.3
