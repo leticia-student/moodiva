@@ -41,7 +41,7 @@
 
 ## Domain
 
-### [ ] T04 — Modelos de domínio e interfaces de repositório
+### [x] T04 — Modelos de domínio e interfaces de repositório
 - **Descrição:** modelos da seção 2.3 e interfaces `AuthRepository`, `ProfileRepository`, `MusicRepository`, `RecommendationRepository`, `SavedTrackRepository`.
 - **Pronto quando:** compila; nenhum import proibido no domain.
 - **Relacionado:** RNF02 · Seção 2.3
