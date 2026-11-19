@@ -47,7 +47,7 @@
 - **Relacionado:** RNF02 · Seção 2.3
 - **Commit:** `feat: adiciona modelos e contratos do dominio`
 
-### [ ] T05 — Regras de negócio + testes
+### [x] T05 — Regras de negócio + testes
 - **Descrição:** classes de `domain/rule` da seção 2.4 com testes unitários (inclui CA08, CA13–CA15, CA21, CA23).
 - **Pronto quando:** testes passam e estão registrados.
 - **Relacionado:** RN01–RN37 · Seção 2.4
