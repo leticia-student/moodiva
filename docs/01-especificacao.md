@@ -37,7 +37,7 @@ Jovens e adultos que ouvem música no celular, usam Spotify ou YouTube e querem 
 
 | # | Funcionalidade | Resumo |
 |---|---|---|
-| F1 | Conta | Cadastro, login e logout com e-mail e senha (Firebase Authentication). |
+| F1 | Conta | Cadastro, login e logout locais com e-mail e senha (contas guardadas no aparelho). |
 | F2 | Onboarding | Teste TIPI e perguntas de gosto musical, feitos uma vez por conta neste aparelho. |
 | F3 | Perfil | Resultado do teste e gostos, com opção de refazer. |
 | F4 | Conversa guiada | Chat com chips: saudação → humor → modo (quando aplicável) → recomendações. |
@@ -53,7 +53,7 @@ Jovens e adultos que ouvem música no celular, usam Spotify ou YouTube e querem 
 
 | Código | Requisito | Prioridade |
 |---|---|---|
-| RF01 | O app deve permitir criar uma conta com e-mail e senha (mínimo de 6 caracteres, regra do Firebase), com confirmação de senha e opção de mostrar/ocultar a senha. | Alta |
+| RF01 | O app deve permitir criar uma conta com e-mail e senha (mínimo de 6 caracteres), com confirmação de senha e opção de mostrar/ocultar a senha. | Alta |
 | RF02 | O app deve permitir entrar com e-mail e senha e manter a sessão entre aberturas do app. | Alta |
 | RF03 | O app deve permitir sair da conta. | Alta |
 | RF04 | Após o primeiro login de uma conta no aparelho, o app deve conduzir o usuário ao onboarding antes de qualquer outra tela. | Alta |
@@ -85,15 +85,16 @@ Jovens e adultos que ouvem música no celular, usam Spotify ou YouTube e querem 
 | Código | Requisito |
 |---|---|
 | RNF01 | **Offline First:** conversa, perfil, músicas salvas e as últimas recomendações em cache funcionam sem internet. O Room é a única fonte de verdade; a UI observa `Flow` do banco e a rede apenas atualiza o banco. |
-| RNF02 | **Arquitetura:** Clean Architecture em módulo único (`:app`), `presentation → domain ← data`. O `domain` é Kotlin puro (sem `android.*`, Retrofit, Room, Koin ou Firebase). |
+| RNF02 | **Arquitetura:** Clean Architecture em módulo único (`:app`), `presentation → domain ← data`. O `domain` é Kotlin puro (sem `android.*`, Retrofit, Room ou Koin). |
 | RNF03 | **Segurança da chave:** a chave do Last.fm fica em `local.properties`, é exposta via `BuildConfig` e nunca aparece em código, commits ou documentação. |
-| RNF04 | **Stack obrigatória:** Kotlin, Jetpack Compose + Material 3, Navigation Compose type-safe, Koin, Coroutines/Flow/StateFlow, Retrofit + OkHttp + kotlinx.serialization, Room (KSP), Coil, Firebase Authentication, WorkManager, JUnit 4, MockK, kotlinx-coroutines-test, Turbine. Proibidos: Hilt, Dagger, RxJava, LiveData, layouts XML, Gson. |
+| RNF04 | **Stack obrigatória:** Kotlin, Jetpack Compose + Material 3, Navigation Compose type-safe, Koin, Coroutines/Flow/StateFlow, Retrofit + OkHttp + kotlinx.serialization, Room (KSP), Coil, WorkManager, JUnit 4, MockK, kotlinx-coroutines-test, Turbine. Proibidos: Hilt, Dagger, RxJava, LiveData, layouts XML, Gson. |
 | RNF05 | **Identidade visual:** segue `docs/identidade_visual.md`. Temas claro e escuro conforme o sistema, sem cor dinâmica; cores, tipografia e formas apenas via `MaterialTheme`. |
 | RNF06 | **Acessibilidade:** contraste mínimo de 4,5:1, alvo de toque de 48dp e `contentDescription` em português nos botões só com ícone. |
 | RNF07 | **Fontes embutidas:** Nunito e Sacramento empacotadas no app (sem downloadable fonts), com licenças OFL em `docs/licencas/`. |
-| RNF08 | **Isolamento por conta:** todo dado no Room é associado ao `uid` do Firebase; dados de uma conta nunca aparecem para outra no mesmo aparelho. |
+| RNF08 | **Isolamento por conta:** todo dado no Room é associado ao `uid` da conta local; dados de uma conta nunca aparecem para outra no mesmo aparelho. |
+| RNF14 | **Senhas:** nunca guardadas em texto puro; o app guarda só um hash PBKDF2-HMAC-SHA256 com sal aleatório por conta. |
 | RNF09 | **Privacidade:** o perfil (respostas, traços e gostos) fica somente no aparelho; não é sincronizado com a nuvem. |
-| RNF10 | **Uso moderado da API:** os termos do Last.fm (cláusula 4.4) não fixam um número; o app adota um limite próprio conservador de no máximo **5 requisições por segundo** e reduz chamadas com cache (gêneros de artistas sem validade, recomendações por 24 h, capas sob demanda). Uso estritamente não comercial (cláusula 3.1). O volume de dados do Last.fm guardado no aparelho fica bem abaixo do teto de 100 MB (cláusula 4.3.4). |
+| RNF10 | **Uso moderado da API:** os termos do Last.fm (cláusula 4.4) não fixam um número; o app adota um limite próprio conservador de no máximo **4 requisições simultâneas**, com média muito abaixo de 5 por segundo em qualquer janela de 5 minutos e reduz chamadas com cache (gêneros de artistas sem validade, recomendações por 24 h, capas sob demanda). Uso estritamente não comercial (cláusula 3.1). O volume de dados do Last.fm guardado no aparelho fica bem abaixo do teto de 100 MB (cláusula 4.3.4). |
 | RNF11 | **Testabilidade:** todas as regras de negócio, os mappers do Last.fm, os ViewModels e os cenários Offline First dos repositórios têm testes unitários JVM. |
 | RNF12 | **Compatibilidade:** `minSdk` 24 (Android 7.0); `targetSdk` e `compileSdk` conforme o projeto. |
 | RNF13 | **Idioma:** interface e documentação em português do Brasil; nomes de código em inglês. |
@@ -103,10 +104,10 @@ Jovens e adultos que ouvem música no celular, usam Spotify ou YouTube e querem 
 - **L1.** As tags de humor do Last.fm são em inglês e usadas sobretudo por ouvintes de música internacional. Para gêneros brasileiros, é esperado que a fonte "Pelo seu gosto" traga a maior parte das músicas.
 - **L2.** Os dados vêm de tags colaborativas do Last.fm, que podem ser imprecisas: uma música pode aparecer num humor discutível.
 - **L3.** O app não toca áudio. Abrir no Spotify ou no YouTube faz uma **busca** por "artista + música", então o primeiro resultado pode não ser a gravação exata.
-- **L4.** Como o perfil fica só no aparelho, quem reinstalar o app ou trocar de celular refaz o teste.
+- **L4.** Como contas e perfil ficam só no aparelho, quem reinstalar o app ou trocar de celular cria a conta e refaz o teste de novo.
 - **L5.** A primeira busca de recomendações para um humor e modo exige internet.
 - **L6.** Artistas sem nenhuma tag de nacionalidade contam como internacionais (RN13). Alguns artistas brasileiros pouco "tagueados" podem ser filtrados incorretamente.
-- **L7.** O cadastro e o primeiro login exigem internet. Depois, a sessão do Firebase fica salva no aparelho e o app abre offline.
+- **L7.** Sem servidor, não há recuperação de senha nem login da mesma conta em outro aparelho.
 
 ## 8. Regras de negócio (RN)
 
@@ -158,7 +159,7 @@ Jovens e adultos que ouvem música no celular, usam Spotify ou YouTube e querem 
 |---|---|
 | RN18 | **Fonte principal ("Pelo seu humor", `MOOD`):** para cada tag do humor e modo, analisar no máximo as **30** primeiras músicas do `tag.getTopTracks`. Manter apenas as de artistas que tenham ao menos um gênero em comum com os gêneros do usuário (RN14) e que respeitem a preferência de origem (RN17). |
 | RN19 | **Ordem da fonte principal:** músicas que aparecem em mais tags do humor vêm primeiro; o empate é resolvido pela melhor posição na tag e, depois, pela Extroversão (RN07). |
-| RN20 | **Fonte de complemento ("Pelo seu gosto", `TASTE`):** usada somente se a fonte principal trouxer menos de **10** músicas. Busca artistas similares aos favoritos (`artist.getSimilar`) dentro da faixa de `match` (RN06), aplica a preferência de origem e seleciona candidatos. Os **20** melhores candidatos (maior `match`) passam pelo `track.getInfo`; os que têm alguma tag do humor escolhido sobem no ranking. |
+| RN20 | **Fonte de complemento ("Pelo seu gosto", `TASTE`):** usada somente se a fonte principal trouxer menos de **10** músicas. Busca artistas similares aos favoritos (`artist.getSimilar`) dentro da faixa de `match` (RN06), aplica a preferência de origem e escolhe até **8** artistas distribuídos pela faixa de `match`. As músicas mais ouvidas desses artistas (`artist.getTopTracks`, até 3 por artista) formam os candidatos; os **20** primeiros candidatos (maior `match`) passam pelo `track.getInfo`; os que têm alguma tag do humor escolhido sobem no ranking. |
 | RN21 | **Tamanho da lista:** no máximo **20** músicas por recomendação: primeiro as da fonte principal e depois as de complemento até completar. |
 | RN22 | Toda música recomendada guarda a fonte que a trouxe (`MOOD` ou `TASTE`) e exibe o selo correspondente: "Pelo seu humor" ou "Pelo seu gosto". |
 | RN23 | **Deduplicação:** duas músicas são iguais quando artista e nome, normalizados (RN12), são iguais. Nunca exibir duplicadas; se a mesma música vier das duas fontes, prevalece `MOOD`. |
@@ -214,7 +215,7 @@ O usuário escolhe **ao menos 1** gênero. Cada gênero exibido corresponde a um
 
 | Código | Regra |
 |---|---|
-| RN32 | Todo dado local (perfil, músicas salvas, caches de recomendação) é associado ao `uid` da conta. O cache de gêneros e nacionalidade dos artistas é público (não pertence a uma conta) e pode ser compartilhado. |
+| RN32 | Todo dado local (perfil, músicas salvas, caches de recomendação) é associado ao `uid` (UUID gerado no cadastro) da conta local. E-mails são comparados sem diferença de maiúsculas e espaços nas pontas; não pode haver duas contas com o mesmo e-mail. O cache de gêneros e nacionalidade dos artistas é público (não pertence a uma conta) e pode ser compartilhado. |
 | RN33 | Uma conta sem perfil completo no aparelho (por exemplo, após reinstalar o app) deve refazer o onboarding. |
 | RN34 | Uma notificação local diária é agendada com `PeriodicWorkRequest` (WorkManager), por volta das **19h** (horário local), momento em que a maioria das pessoas já saiu do trabalho ou da aula. |
 | RN35 | Se a permissão de notificação for negada, o app continua funcionando normalmente e não volta a pedi-la automaticamente. |
@@ -224,13 +225,13 @@ O usuário escolhe **ao menos 1** gênero. Cada gênero exibido corresponde a um
 | Código | Regra |
 |---|---|
 | RN36 | **Épocas** (opcional, múltipla escolha): 60s, 70s, 80s, 90s, 2000s, 2010s, 2020s. Aparecem apenas no perfil e **não** influenciam as recomendações, porque nenhuma regra do `CLAUDE.md` as usa e o Last.fm não informa o ano das músicas nos endpoints adotados. |
-| RN37 | **Atribuição ao Last.fm** (termos da API, cláusulas 2.7 e 4.2.2): a tela "Sobre" exibe um dos botões oficiais "powered by AudioScrobbler" de last.fm/resources, com link para last.fm, e o texto "Dados musicais fornecidos pelo Last.fm". |
+| RN37 | **Atribuição ao Last.fm** (termos da API, cláusulas 2.7 e 4.2.2): a tela "Sobre" exibe o botão "powered by AudioScrobbler", com link para last.fm, e o texto "Dados musicais fornecidos pelo Last.fm". |
 
 ## 9. Critérios de aceite
 
 ### Conta e onboarding
 
-- **CA01 (RF01):** Dado um e-mail ainda não cadastrado e uma senha com 6 caracteres ou mais, quando o usuário se cadastra, então a conta é criada e ele é levado ao onboarding.
+- **CA01 (RF01):** Dado um e-mail ainda não cadastrado e uma senha com 6 caracteres ou mais, repetida corretamente, quando o usuário se cadastra (mesmo offline), então a conta é criada e ele é levado ao onboarding.
 - **CA02 (RF02):** Dado um usuário logado, quando ele fecha e reabre o app, mesmo sem internet, então continua logado.
 - **CA03 (RF02):** Dado um e-mail ou senha incorretos, quando o usuário tenta entrar, então vê uma mensagem de erro em português e permanece na tela de login.
 - **CA04 (RF03, RNF08):** Dado o usuário A logado com perfil e músicas salvas, quando ele sai e o usuário B entra no mesmo aparelho, então B não vê nenhum dado de A.
@@ -309,9 +310,12 @@ O usuário escolhe **ao menos 1** gênero. Cada gênero exibido corresponde a um
 | 2026-11-19 | Artistas favoritos: de 1 a 5, digitados, sem validação online. | Onboarding funciona offline e não fica longo. |
 | 2026-11-19 | Épocas opcionais e só exibidas no perfil. | Nenhuma regra as usa e o Last.fm não informa o ano nos endpoints adotados. |
 | 2026-11-19 | Notificação por volta das 19h. | Horário em que a maioria já saiu do trabalho ou da aula. |
-| 2026-11-19 | Senha com mínimo de 6 caracteres; "esqueci minha senha" fora do escopo. | Regra do Firebase; mantém o escopo do `CLAUDE.md`. |
+| 2026-11-19 | Senha com mínimo de 6 caracteres; "esqueci minha senha" fora do escopo. | Mantém o escopo do `CLAUDE.md`. |
+| 2026-11-19 | **Login local, sem Firebase** (contas no Room, hash PBKDF2, sessão no aparelho). | Pedido da responsável do projeto; o app fica 100% funcional sem serviços externos além do Last.fm. |
+| 2026-11-19 | Inclusão do método `artist.getTopTracks` do Last.fm. | O `artist.getSimilar` devolve só artistas; sem as músicas deles a fonte "Pelo seu gosto" não teria candidatas (RN20). |
+| 2026-11-19 | Atribuição como botão de texto "powered by AudioScrobbler" com link para last.fm. | O antigo endereço de imagens oficiais (last.fm/resources) não está mais disponível; o texto e o link cumprem a cláusula 2.7. |
 | 2026-11-19 | Remoção de música salva com confirmação (RF26). | Permite corrigir um salvamento por engano sem perder dados por toque acidental. |
-| 2026-11-19 | Limite próprio de 5 requisições/s ao Last.fm; uso não comercial. | Os termos não fixam um número (cláusula 4.4); o app é acadêmico e não comercial (cláusula 3.1). |
+| 2026-11-19 | No máximo 4 requisições simultâneas ao Last.fm; uso não comercial. | Os termos não fixam um número (cláusula 4.4); o app é acadêmico e não comercial (cláusula 3.1). |
 
 ## 11. Pontos de atenção para a responsável
 
