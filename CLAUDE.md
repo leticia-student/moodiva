@@ -12,16 +12,16 @@ O fluxo do app tem três momentos:
 
 As funcionalidades principais devem funcionar sem internet: conversa, perfil, músicas salvas e as últimas recomendações em cache.
 
-A identidade visual está em `docs/identidade_visual.md`. Leia-a antes de criar qualquer tela ou componente.
+A identidade visual está em `docs/identidade_visual.md`. Leia-a antes de criar qualquer tela ou componente. A especificação, o planejamento e as tarefas estão em `docs/01-especificacao.md`, `docs/02-planejamento.md` e `docs/03-tarefas.md`.
 
 ## Regras de trabalho (leia antes de qualquer ação)
 
-1. Siga o Spec-Driven Development (SDD), nesta ordem: Especificação → Planejamento → Decomposição → Implementação → Validação. Não escreva código de produção antes de os documentos de especificação, planejamento e tarefas estarem aprovados por mim.
-2. Ao final de cada fase do SDD, pare e peça minha aprovação antes de seguir.
-3. Antes de qualquer ação que crie ou altere arquivos, explique o que vai fazer e por quê, e aguarde minha confirmação.
+1. Siga o Spec-Driven Development (SDD), nesta ordem: Especificação → Planejamento → Decomposição → Implementação → Validação. Não escreva código de produção antes de os documentos de especificação, planejamento e tarefas existirem.
+2. **Autonomia (autorizada em 2026-11-19):** o agente segue todas as fases até o app pronto sem parar para aprovação, fazendo os ajustes necessários desde que não mudem a ideia principal do app. Toda decisão nova é registrada em `docs/01-especificacao.md` (seção 10) ou `docs/02-planejamento.md`.
+3. **Git:** faça um commit por tarefa (Conventional Commits em português). **Nunca faça `git push`**: a responsável envia ao GitHub.
 4. Trabalhe uma tarefa por vez, na ordem de `docs/03-tarefas.md`. Ao concluir, marque a tarefa como concluída no arquivo.
-5. Não adicione funcionalidades, bibliotecas ou telas fora da especificação. Se achar que algo é necessário, pergunte.
-6. Em caso de dúvida ou ambiguidade, pergunte em vez de supor. Consulte também a seção "Decisões pendentes" no fim deste arquivo.
+5. Não adicione funcionalidades, bibliotecas ou telas fora da especificação, salvo quando forem necessárias para cumprir um requisito; nesse caso, registre o motivo.
+6. Em caso de ambiguidade, escolha a opção de melhor experiência para o usuário que respeite este arquivo e registre a decisão.
 7. Explique as decisões técnicas de forma didática: este é um projeto de aprendizado e preciso entender e conseguir defender cada parte do código.
 8. Escreva respostas e documentação em português do Brasil. Nomes de classes, funções e variáveis em inglês.
 
@@ -37,14 +37,14 @@ A identidade visual está em `docs/identidade_visual.md`. Leia-a antes de criar 
 | Rede | Retrofit + OkHttp + conversor kotlinx.serialization |
 | Persistência | Room (com KSP) |
 | Imagens | Coil (com cache em disco) |
-| Autenticação | Firebase Authentication (via Firebase BoM), e-mail e senha |
+| Autenticação | Local: contas no Room, senha com hash PBKDF2 (`javax.crypto`), sessão salva no aparelho. **Sem Firebase.** |
 | Tarefas agendadas | WorkManager (somente para a notificação diária) |
 | Testes | JUnit 4, MockK, kotlinx-coroutines-test, Turbine |
 | Build | Gradle Kotlin DSL + Version Catalog (`gradle/libs.versions.toml`) |
 
 Use as versões estáveis mais recentes e compatíveis entre si. Não use Hilt, Dagger, RxJava, LiveData, layouts XML nem Gson.
 
-O WorkManager é uma exceção autorizada em relação ao KeveOQ: é o mecanismo padrão do Android para executar trabalho agendado mesmo com o app fechado. Não use outros recursos do Firebase (Firestore, Cloud Messaging, Analytics etc.) sem perguntar.
+O WorkManager é o mecanismo padrão do Android para executar trabalho agendado mesmo com o app fechado. **Não use Firebase** (decisão de 2026-11-19): a autenticação é local.
 
 ## APIs
 
@@ -58,6 +58,7 @@ O WorkManager é uma exceção autorizada em relação ao KeveOQ: é o mecanismo
   - `artist.getTopTags` (`artist`): gêneros e nacionalidade de um artista. Cada tag tem um `count` de 0 a 100 (peso relativo).
   - `artist.getSimilar` (`artist`, `limit`): artistas parecidos com os favoritos do usuário. Cada um tem um `match` de 0 a 1 (grau de semelhança).
   - `track.getInfo` (`artist`, `track`): capa do álbum (`album.image`), popularidade (`listeners`) e tags da própria música (`toptags`), numa única chamada.
+  - `artist.getTopTracks` (`artist`, `limit`): músicas mais ouvidas de um artista similar, usadas como candidatas na fonte "Pelo seu gosto" (o `artist.getSimilar` devolve só artistas). As imagens também são placeholder.
 - O Last.fm é a **única** API de música do app. O Deezer foi avaliado e descartado, porque o `track.getInfo` já fornece capas reais.
 - Autenticação: a chave fica em `local.properties` (`LASTFM_API_KEY=...`), é exposta via `BuildConfig` e adicionada às requisições (junto com `format=json`) por um Interceptor do OkHttp. **Nunca** escreva a chave em código, commits ou documentação. Confirme que `local.properties` está no `.gitignore`.
 - Uso moderado: o Last.fm pede que as requisições não sejam excessivas. Confira o limite atual nos termos da API e respeite-o (ver "Estratégia de recomendação" para as medidas de economia).
@@ -70,7 +71,7 @@ O WorkManager é uma exceção autorizada em relação ao KeveOQ: é o mecanismo
 - Imagens:
   - As imagens de músicas em `tag.getTopTracks` e as de artistas em `artist.getSimilar` são sempre um placeholder genérico (arquivo `2a96cbd8b46e442fc41c2b86b821562f.png`). **Não use essas imagens.**
   - A capa válida vem de `album.image` no `track.getInfo` (use o tamanho `extralarge`). Se a URL contiver o hash do placeholder, ou se o álbum não vier, trate como "capa indisponível".
-- Atribuição obrigatória na tela "Sobre" (texto exato pendente; ver "Decisões pendentes").
+- Atribuição obrigatória na tela "Sobre": "powered by AudioScrobbler" com link para last.fm (termos, cláusulas 2.7 e 4.2.2; RN37).
 
 ### Abrir a música em outro app (sem API)
 
@@ -97,7 +98,7 @@ Estas regras ficam na camada Domain, em Kotlin puro, e devem ser cobertas por te
 | Abertura a experiências | 5 e 10R |
 
 - O teste só é concluído com as 10 respostas preenchidas.
-- O texto das afirmações deve vir de uma versão em português do Brasil publicada e validada (ver "Decisões pendentes"). Não traduza por conta própria.
+- O texto das afirmações é o da versão brasileira de Carlos Eduardo Pimentel (RN05; `docs/referencias/`). Não traduza por conta própria.
 - O app deve informar que o teste serve apenas para personalizar recomendações e não é uma avaliação psicológica.
 
 ### Influência da personalidade
@@ -108,7 +109,7 @@ Apenas dois traços influenciam as recomendações:
   - ≥ 5,0: perfil de descoberta. Usa também artistas com `match` mais baixo, ou seja, mais distantes dos favoritos.
   - ≤ 3,0: perfil de familiaridade. Usa só artistas com `match` alto, próximos dos favoritos.
   - Entre esses valores: equilibrado.
-  - Os limites exatos de `match` de cada faixa serão definidos na especificação.
+  - Limites de `match`: descoberta ≥ 0,10; equilibrado ≥ 0,25; familiaridade ≥ 0,50 (RN06).
 - **Extroversão:** usada **somente como desempate** no ranking. ≥ 5,0 dá peso extra a músicas com tags energéticas; ≤ 3,0 dá peso extra a tags calmas. Nunca contradiz o humor escolhido.
 - Os demais traços aparecem apenas na tela de perfil.
 - A estabilidade emocional **nunca** é usada para decidir pelo usuário se ele deve "mudar de clima". Essa escolha é sempre do usuário, na conversa.
@@ -138,7 +139,7 @@ Antes de comparar nomes de tags, artistas ou músicas: converter para minúscula
 
 ### Gêneros e nacionalidade de um artista
 
-- Os gêneros de um artista vêm do `artist.getTopTags`. Uma tag só conta se, após normalizada, estiver na **lista fechada de gêneros** apresentada no onboarding e tiver `count` mínimo (valor definido na especificação). Tags como "female vocalists" ou "british" não são gêneros e são ignoradas.
+- Os gêneros de um artista vêm do `artist.getTopTags`. Uma tag só conta se, após normalizada, estiver na **lista fechada de gêneros** apresentada no onboarding e tiver `count` ≥ 10 (RN14). Tags como "female vocalists" ou "british" não são gêneros e são ignoradas.
 - A nacionalidade brasileira é identificada pelas tags `brazilian`, `brasil` ou `brazil` (após normalização).
 - Os gêneros e a nacionalidade de cada artista ficam em cache no Room **sem prazo de validade**, porque praticamente não mudam.
 
@@ -147,7 +148,7 @@ Antes de comparar nomes de tags, artistas ou músicas: converter para minúscula
 A recomendação usa duas fontes, nesta ordem:
 
 1. **Fonte principal: "Pelo seu humor".** Buscar as músicas das tags do humor (`tag.getTopTracks`), analisando no máximo as 30 primeiras de cada tag, e manter só as de artistas cujos gêneros batem com os gostos do usuário e cuja nacionalidade respeita a preferência de origem.
-2. **Fonte de complemento: "Pelo seu gosto".** Se a fonte principal não atingir a quantidade mínima de músicas (valor definido na especificação), completar com músicas de artistas similares aos favoritos (`artist.getSimilar`), na faixa de `match` definida pela abertura do usuário. Os 20 melhores candidatos passam pelo `track.getInfo`, e os que têm alguma tag do humor escolhido sobem no ranking.
+2. **Fonte de complemento: "Pelo seu gosto".** Se a fonte principal trouxer menos de 10 músicas (RN20; lista final de até 20), completar com músicas de artistas similares aos favoritos (`artist.getSimilar`), na faixa de `match` definida pela abertura do usuário. Os 20 melhores candidatos passam pelo `track.getInfo`, e os que têm alguma tag do humor escolhido sobem no ranking.
 
 Regras gerais:
 
@@ -187,7 +188,7 @@ Regras gerais:
 ### Perfil e conta
 
 - O perfil (respostas do teste, traços e gostos) fica **somente no Room**, no aparelho. Não sincronizar com a nuvem.
-- Todo dado do usuário no Room (perfil, músicas salvas, cache) é associado ao `uid` do Firebase. Ao entrar com outra conta no mesmo aparelho, os dados de uma conta nunca aparecem para a outra.
+- Todo dado do usuário no Room (perfil, músicas salvas, cache) é associado ao `uid` da conta local. Ao entrar com outra conta no mesmo aparelho, os dados de uma conta nunca aparecem para a outra.
 - Se o usuário reinstalar o app, faz o teste de novo (comportamento esperado e documentado).
 
 ### Notificação
@@ -198,7 +199,7 @@ Regras gerais:
 ## Escopo
 
 Dentro do escopo:
-1. Login e cadastro com Firebase Authentication (e-mail e senha).
+1. Login e cadastro locais (e-mail e senha), sem Firebase.
 2. Onboarding: teste TIPI e perguntas de gosto musical, incluindo a preferência por músicas nacionais, internacionais ou ambas.
 3. Tela de perfil com o resultado do teste e a opção de refazê-lo.
 4. Conversa guiada (chat com chips) sobre o humor do dia e o modo acompanhar/mudar.
@@ -218,13 +219,13 @@ Clean Architecture em um único módulo `:app`, com separação por pacotes e re
 presentation  →  domain  ←  data
 ```
 
-- **domain**: modelos, interfaces de repositório, casos de uso e regras de negócio. Kotlin puro: é **proibido** importar `android.*`, Retrofit, Room, Koin ou Firebase.
-- **data**: implementa os repositórios do domain. Contém DTOs, entidades Room, DAOs, APIs Retrofit, acesso ao Firebase Auth e mappers. DTOs, entidades e classes do Firebase nunca saem desta camada.
+- **domain**: modelos, interfaces de repositório, casos de uso e regras de negócio. Kotlin puro: é **proibido** importar `android.*`, Retrofit, Room ou Koin.
+- **data**: implementa os repositórios do domain. Contém DTOs, entidades Room, DAOs, APIs Retrofit, autenticação local (hash de senha e sessão) e mappers. DTOs e entidades nunca saem desta camada.
 - **presentation**: telas Compose, ViewModels, UiState e navegação. Acessa apenas casos de uso.
 - **di**: módulos Koin; é o único lugar que conhece todas as camadas.
 
 ```
-com.<seunome>.moodiva/
+com.leticia.moodiva/
 ├── MoodivaApp.kt          # Application: inicializa o Koin
 ├── MainActivity.kt
 ├── di/                    # dataModule, domainModule, presentationModule
@@ -237,7 +238,7 @@ com.<seunome>.moodiva/
 │   └── usecase/
 ├── data/
 │   ├── remote/            # LastFmApi, DTOs, interceptor da chave
-│   ├── auth/              # implementação com Firebase Auth
+│   ├── auth/              # autenticação local: hash de senha e sessão
 │   ├── local/             # AppDatabase, DAOs, entidades (inclui cache de gêneros dos artistas)
 │   ├── notification/      # Worker da notificação diária
 │   ├── mapper/
@@ -269,16 +270,9 @@ com.<seunome>.moodiva/
 - ViewModels: testes com `kotlinx-coroutines-test` e Turbine para verificar a sequência de `UiState`.
 - Repositórios: testes com MockK simulando API, DAO e conectividade, cobrindo os cenários de Offline First acima.
 
-## Decisões pendentes
+## Decisões resolvidas (2026-11-19)
 
-Não implemente nada que dependa destes itens sem a minha decisão. Se uma tarefa esbarrar em um deles, pare e pergunte.
-
-1. **Valores numéricos da recomendação:** `count` mínimo para uma tag de gênero contar, faixas de `match` de cada perfil de abertura e quantidade mínima de músicas da fonte principal antes de usar o complemento. Serão definidos na especificação.
-2. **Versão do TIPI em português:** escolher a versão validada, conferir a licença de uso e registrar a referência.
-3. **Texto de atribuição:** texto exato exigido pelo Last.fm para a tela "Sobre".
-4. **Mudança de perfil:** ao refazer o teste ou mudar os gostos, o cache de recomendações deve ser descartado? (proposta: sim).
-5. **Artistas sem nacionalidade:** confirmar a regra proposta de tratá-los como internacionais.
-6. **Package do app:** substituir `com.<seunome>.moodiva` pelo nome definitivo.
+As antigas "decisões pendentes" foram resolvidas e estão registradas em `docs/01-especificacao.md`, seção 10: valores numéricos da recomendação (RN06, RN14, RN20, RN21), versão do TIPI (RN05), atribuição do Last.fm (RN37), descarte do cache ao mudar o perfil (RN26), artistas sem nacionalidade como internacionais (RN13) e package `com.leticia.moodiva`. Também foi decidido usar **login local, sem Firebase**.
 
 ## Decisões já tomadas (spike do Last.fm)
 
