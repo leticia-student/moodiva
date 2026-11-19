@@ -55,3 +55,16 @@
 | Falhas | 0 |
 | Ignorados | 0 |
 | Correções aplicadas | Nenhuma |
+
+---
+
+## 2026-11-19 19:56 — T09: ViewModel raiz (sessão, perfil, conexão) e utilitários de apresentação
+
+| Item | Valor |
+|---|---|
+| Comando | `./gradlew testDebugUnitTest` |
+| Total | 119 |
+| Aprovados | 119 |
+| Falhas | 0 |
+| Ignorados | 0 |
+| Correções aplicadas | Nenhuma |

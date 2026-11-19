@@ -1,3 +1,262 @@
 <resources>
     <string name="app_name" translatable="false">Moodiva</string>
+
+    <!-- Geral -->
+    <string name="action_back">Voltar</string>
+    <string name="action_retry">Tentar novamente</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_continue">Continuar</string>
+    <string name="action_save">Salvar</string>
+    <string name="offline_banner">Você está sem internet. Conversa, perfil e músicas salvas continuam funcionando.</string>
+
+    <!-- Erros (planejamento, seção 7.2) -->
+    <string name="error_network">Não foi possível buscar músicas. Verifique sua conexão.</string>
+    <string name="error_invalid_api_key">A chave do Last.fm não foi configurada corretamente.</string>
+    <string name="error_rate_limited">Muitas buscas em pouco tempo. Tente de novo em alguns minutos.</string>
+    <string name="error_server">O Last.fm está instável agora. Tente novamente mais tarde.</string>
+    <string name="error_generic">Algo deu errado. Tente novamente.</string>
+    <string name="error_not_signed_in">Sua sessão terminou. Entre de novo para continuar.</string>
+
+    <!-- Login e cadastro -->
+    <string name="auth_tagline">Músicas que entendem o seu humor.</string>
+    <string name="auth_sign_in_title">Entrar</string>
+    <string name="auth_sign_up_title">Criar conta</string>
+    <string name="auth_email">E-mail</string>
+    <string name="auth_password">Senha</string>
+    <string name="auth_confirm_password">Repita a senha</string>
+    <string name="auth_show_password">Mostrar senha</string>
+    <string name="auth_hide_password">Ocultar senha</string>
+    <string name="auth_sign_in_action">Entrar</string>
+    <string name="auth_sign_up_action">Criar conta</string>
+    <string name="auth_switch_to_sign_up">Ainda não tem conta? Criar conta</string>
+    <string name="auth_switch_to_sign_in">Já tem conta? Entrar</string>
+    <string name="auth_local_note">Sua conta e seus dados ficam guardados só neste aparelho.</string>
+    <string name="auth_error_email_blank">Informe seu e-mail.</string>
+    <string name="auth_error_email_invalid">Digite um e-mail válido, como nome@exemplo.com.</string>
+    <string name="auth_error_password_blank">Informe sua senha.</string>
+    <string name="auth_error_password_short">A senha precisa ter pelo menos 6 caracteres.</string>
+    <string name="auth_error_confirmation">As senhas não são iguais.</string>
+    <string name="auth_error_email_used">Já existe uma conta com este e-mail neste aparelho. Entre com ela.</string>
+    <string name="auth_error_invalid_credentials">E-mail ou senha incorretos.</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_intro_title">Vamos nos conhecer?</string>
+    <string name="onboarding_intro_text">Primeiro, 10 frases rápidas sobre você. Depois, conte do que gosta de ouvir.</string>
+    <string name="onboarding_disclaimer">Este teste serve apenas para personalizar suas recomendações. Ele não é uma avaliação psicológica.</string>
+    <string name="onboarding_start_test">Começar teste</string>
+    <string name="onboarding_tipi_prompt">Eu me vejo como alguém…</string>
+    <string name="onboarding_tipi_progress">%1$d de %2$d</string>
+    <string name="onboarding_tipi_scale_low">Discordo fortemente</string>
+    <string name="onboarding_tipi_scale_high">Concordo fortemente</string>
+    <string name="onboarding_previous">Anterior</string>
+    <string name="onboarding_next">Próxima</string>
+    <string name="onboarding_answer_cd">Resposta %1$d: %2$s</string>
+    <string name="onboarding_genres_title">Quais gêneros você curte?</string>
+    <string name="onboarding_genres_hint">Escolha pelo menos um.</string>
+    <string name="onboarding_artists_title">Quem você mais gosta de ouvir?</string>
+    <string name="onboarding_artists_hint">Adicione de 1 a 5 artistas.</string>
+    <string name="onboarding_artist_field">Nome do artista</string>
+    <string name="onboarding_artist_add">Adicionar artista</string>
+    <string name="onboarding_artist_remove">Remover %1$s</string>
+    <string name="onboarding_artists_limit">Você já adicionou 5 artistas.</string>
+    <string name="onboarding_eras_title">Alguma época preferida?</string>
+    <string name="onboarding_eras_hint">Opcional: escolha quantas quiser.</string>
+    <string name="onboarding_origin_title">De onde vêm as músicas?</string>
+    <string name="onboarding_origin_hint">Escolha a origem das recomendações.</string>
+    <string name="onboarding_finish">Concluir</string>
+    <string name="onboarding_result_title">Seu perfil está pronto!</string>
+    <string name="onboarding_result_text">Agora é só me contar como você está.</string>
+    <string name="onboarding_go_to_chat">Conversar com a Moodiva</string>
+    <string name="onboarding_retake_title">Refazer teste</string>
+    <string name="onboarding_edit_taste_title">Editar gostos</string>
+
+    <!-- Itens do TIPI: versão brasileira de Carlos Eduardo Pimentel (RN05). Não alterar. -->
+    <string name="tipi_item_1">Extrovertido, entusiasta.</string>
+    <string name="tipi_item_2">Crítico, briguento.</string>
+    <string name="tipi_item_3">Confiável, auto-disciplinado.</string>
+    <string name="tipi_item_4">Ansioso, que se chateia facilmente.</string>
+    <string name="tipi_item_5">Aberto a novas experiências, complexo.</string>
+    <string name="tipi_item_6">Reservado, quieto.</string>
+    <string name="tipi_item_7">Simpático, acolhedor.</string>
+    <string name="tipi_item_8">Desorganizado, descuidado.</string>
+    <string name="tipi_item_9">Calmo, emocionalmente estável.</string>
+    <string name="tipi_item_10">Convencional, sem criatividade.</string>
+    <string name="tipi_scale_1">Discordo fortemente</string>
+    <string name="tipi_scale_2">Discordo moderadamente</string>
+    <string name="tipi_scale_3">Discordo um pouco</string>
+    <string name="tipi_scale_4">Nem concordo nem discordo</string>
+    <string name="tipi_scale_5">Concordo um pouco</string>
+    <string name="tipi_scale_6">Concordo moderadamente</string>
+    <string name="tipi_scale_7">Concordo fortemente</string>
+
+    <!-- Traços -->
+    <string name="trait_extraversion">Extroversão</string>
+    <string name="trait_agreeableness">Amabilidade</string>
+    <string name="trait_conscientiousness">Conscienciosidade</string>
+    <string name="trait_emotional_stability">Estabilidade emocional</string>
+    <string name="trait_openness">Abertura a experiências</string>
+    <string name="trait_score">%1$s de 7</string>
+
+    <!-- Gêneros -->
+    <string name="genre_pop">Pop</string>
+    <string name="genre_rock">Rock</string>
+    <string name="genre_indie">Indie</string>
+    <string name="genre_electronic">Eletrônica</string>
+    <string name="genre_hip_hop">Hip-hop / Rap</string>
+    <string name="genre_rnb_soul">R&amp;B / Soul</string>
+    <string name="genre_jazz">Jazz</string>
+    <string name="genre_blues">Blues</string>
+    <string name="genre_classical">Clássica</string>
+    <string name="genre_metal">Metal</string>
+    <string name="genre_reggae">Reggae</string>
+    <string name="genre_country">Country</string>
+    <string name="genre_latin">Latina</string>
+    <string name="genre_k_pop">K-pop</string>
+    <string name="genre_gospel">Gospel</string>
+    <string name="genre_mpb">MPB</string>
+    <string name="genre_samba_pagode">Samba / Pagode</string>
+    <string name="genre_bossa_nova">Bossa Nova</string>
+    <string name="genre_sertanejo">Sertanejo</string>
+    <string name="genre_forro">Forró</string>
+    <string name="genre_brazilian_funk">Funk brasileiro</string>
+    <string name="genre_axe">Axé</string>
+
+    <!-- Épocas -->
+    <string name="era_sixties">Anos 60</string>
+    <string name="era_seventies">Anos 70</string>
+    <string name="era_eighties">Anos 80</string>
+    <string name="era_nineties">Anos 90</string>
+    <string name="era_two_thousands">Anos 2000</string>
+    <string name="era_twenty_tens">Anos 2010</string>
+    <string name="era_twenty_twenties">Anos 2020</string>
+
+    <!-- Origem -->
+    <string name="origin_national">Nacionais</string>
+    <string name="origin_international">Internacionais</string>
+    <string name="origin_both">Ambas</string>
+    <string name="origin_national_hint">Só artistas brasileiros</string>
+    <string name="origin_international_hint">Só artistas de fora do Brasil</string>
+    <string name="origin_both_hint">Sem filtro de origem</string>
+
+    <!-- Humores e modos -->
+    <string name="mood_happy">😊 Feliz</string>
+    <string name="mood_sad">😢 Triste</string>
+    <string name="mood_excited">🤩 Animado</string>
+    <string name="mood_anxious">😰 Ansioso</string>
+    <string name="mood_tired">😴 Cansado</string>
+    <string name="mood_romantic">🥰 Romântico</string>
+    <string name="mood_nostalgic">🌅 Nostálgico</string>
+    <string name="mood_focused">🎯 Focado</string>
+    <string name="mood_happy_plain">Feliz</string>
+    <string name="mood_sad_plain">Triste</string>
+    <string name="mood_excited_plain">Animado</string>
+    <string name="mood_anxious_plain">Ansioso</string>
+    <string name="mood_tired_plain">Cansado</string>
+    <string name="mood_romantic_plain">Romântico</string>
+    <string name="mood_nostalgic_plain">Nostálgico</string>
+    <string name="mood_focused_plain">Focado</string>
+    <string name="mode_match">Acompanhar esse clima</string>
+    <string name="mode_shift">Mudar esse clima</string>
+    <string name="mode_match_short">acompanhar</string>
+    <string name="mode_shift_short">mudar o clima</string>
+
+    <!-- Conversa -->
+    <string name="tab_chat">Conversa</string>
+    <string name="tab_saved">Salvas</string>
+    <string name="tab_profile">Perfil</string>
+    <string name="chat_greeting">Oi! Eu sou a Moodiva. Que tal escolher umas músicas que combinem com você hoje?</string>
+    <string name="chat_answer_start">Vamos lá!</string>
+    <string name="chat_ask_mood">Como você está hoje?</string>
+    <string name="chat_ask_mode">Entendi. Você quer músicas que acompanhem esse clima ou que ajudem a mudar?</string>
+    <string name="chat_anxious_note">Vou escolher músicas calmas para você, combinado?</string>
+    <string name="chat_loading">Separando músicas para você…</string>
+    <string name="chat_ready">Prontinho! Separei suas músicas.</string>
+    <string name="chat_error_first_search">Para a primeira busca deste humor eu preciso de internet. Conecte-se e tente de novo.</string>
+    <string name="chat_see_songs">Ver músicas</string>
+    <string name="chat_restart">Conversar de novo</string>
+    <string name="chat_notification_title">Posso te lembrar?</string>
+    <string name="chat_notification_text">Todo dia, no começo da noite, eu te mando um lembrete para conversarmos sobre o seu humor. Você pode desligar quando quiser nas configurações do aparelho.</string>
+    <string name="chat_notification_allow">Permitir</string>
+    <string name="chat_notification_deny">Agora não</string>
+
+    <!-- Recomendações -->
+    <string name="recommendations_title">%1$s · %2$s</string>
+    <string name="recommendations_updated_now">Atualizado agora</string>
+    <plurals name="recommendations_updated_minutes">
+        <item quantity="one">Atualizado há %d minuto</item>
+        <item quantity="other">Atualizado há %d minutos</item>
+    </plurals>
+    <plurals name="recommendations_updated_hours">
+        <item quantity="one">Atualizado há %d hora</item>
+        <item quantity="other">Atualizado há %d horas</item>
+    </plurals>
+    <string name="recommendations_empty">Não encontrei músicas para esse humor com os seus gostos. Tente outro humor ou edite seus gostos no perfil.</string>
+    <string name="recommendations_empty_offline">É preciso internet para a primeira busca deste humor.</string>
+    <string name="source_mood">Pelo seu humor</string>
+    <string name="source_taste">Pelo seu gosto</string>
+    <string name="track_open_spotify">Spotify</string>
+    <string name="track_open_youtube">YouTube</string>
+    <string name="track_open_spotify_cd">Abrir %1$s no Spotify</string>
+    <string name="track_open_youtube_cd">Abrir %1$s no YouTube</string>
+    <string name="track_save">Salvar música</string>
+    <string name="track_saved">Música salva</string>
+    <string name="track_saved_message">Música salva em \"Quero ouvir\".</string>
+    <string name="track_already_saved">Essa música já está na sua lista.</string>
+    <string name="track_cover_unavailable">Capa indisponível</string>
+    <string name="track_no_app">Nenhum app disponível para abrir este link.</string>
+
+    <!-- Músicas salvas -->
+    <string name="saved_title">Músicas salvas</string>
+    <string name="saved_filter_all">Todas</string>
+    <string name="saved_filter_want">Quero ouvir</string>
+    <string name="saved_filter_listened">Ouvidas</string>
+    <string name="saved_empty">Você ainda não salvou nenhuma música.</string>
+    <string name="saved_empty_filter_want">Nenhuma música esperando para ser ouvida.</string>
+    <string name="saved_empty_filter_listened">Você ainda não marcou nenhuma música como ouvida.</string>
+    <string name="saved_go_chat">Conversar com a Moodiva</string>
+    <string name="saved_mark_listened">Já ouvi</string>
+    <string name="saved_status_want">Quero ouvir</string>
+    <string name="saved_status_listened">Ouvida</string>
+    <string name="saved_remove">Remover música</string>
+    <string name="saved_remove_title">Remover música?</string>
+    <string name="saved_remove_text">\"%1$s\" sai da sua lista. Você pode salvá-la de novo depois.</string>
+    <string name="saved_remove_confirm">Remover</string>
+    <string name="saved_rate_cd">Dar %1$d de 5 estrelas</string>
+    <string name="saved_rating_cd">Avaliação: %1$d de 5 estrelas</string>
+    <string name="saved_rate_hint">Toque nas estrelas para avaliar</string>
+
+    <!-- Perfil -->
+    <string name="profile_title">Seu perfil</string>
+    <string name="profile_personality">Personalidade</string>
+    <string name="profile_personality_note">Abertura e Extroversão ajustam as recomendações. Os outros traços são só para você conhecer.</string>
+    <string name="profile_genres">Gêneros</string>
+    <string name="profile_artists">Artistas favoritos</string>
+    <string name="profile_eras">Épocas</string>
+    <string name="profile_eras_none">Nenhuma época escolhida</string>
+    <string name="profile_origin">Origem das músicas</string>
+    <string name="profile_retake">Refazer teste</string>
+    <string name="profile_edit_taste">Editar gostos</string>
+    <string name="profile_about">Sobre o Moodiva</string>
+    <string name="profile_sign_out">Sair da conta</string>
+    <string name="profile_account">Conta: %1$s</string>
+
+    <!-- Sobre -->
+    <string name="about_title">Sobre</string>
+    <string name="about_version">Versão %1$s</string>
+    <string name="about_description">O Moodiva recomenda músicas a partir do seu humor, da sua personalidade e dos seus gostos. É um trabalho acadêmico, sem fins comerciais.</string>
+    <string name="about_lastfm_title">Dados musicais</string>
+    <string name="about_lastfm_text">Dados musicais fornecidos pelo Last.fm.</string>
+    <string name="about_lastfm_button" translatable="false">powered by AudioScrobbler</string>
+    <string name="about_fonts_title">Fontes</string>
+    <string name="about_fonts_text">Nunito (© 2014 The Nunito Project Authors) e Sacramento (© 2012 Brian J. Bonislawsky, Astigmatic), sob a SIL Open Font License 1.1.</string>
+    <string name="about_tipi_title">Teste de personalidade</string>
+    <string name="about_tipi_text">TIPI (Gosling, Rentfrow e Swann, 2003), versão brasileira de Carlos Eduardo Pimentel. Serve só para personalizar as recomendações e não é uma avaliação psicológica.</string>
+    <string name="about_icons_title">Ícones</string>
+    <string name="about_icons_text">Material Symbols, do Google, sob a licença Apache 2.0.</string>
+
+    <!-- Notificação -->
+    <string name="notification_channel_name">Lembretes diários</string>
+    <string name="notification_channel_description">Um lembrete por dia para conversar com a Moodiva.</string>
+    <string name="notification_title">Como você está hoje?</string>
+    <string name="notification_text">Me conta seu humor e eu escolho umas músicas para você. 🎧</string>
 </resources>
