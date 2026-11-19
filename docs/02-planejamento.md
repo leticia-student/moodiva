@@ -326,6 +326,7 @@ O padrão é o da skill `android-compose-screen`:
 | Data | Decisão | Motivo |
 |---|---|---|
 | 2026-11-19 | Versões idênticas às do KeveOQ | Já compilam e passam nos testes nesta máquina |
+| 2026-11-19 | *Core library desugaring* (`desugar_jdk_libs` 2.1.5) | Mantém o `minSdk` 24 escolhido, com `java.time` disponível no Android 7 |
 | 2026-11-19 | Tags brutas no cache, classificação no domain | Mantém RN13/RN14 testáveis e permite mudar a regra sem limpar o cache |
 | 2026-11-19 | Sessão em `SharedPreferences` | Só um uid; evita adicionar DataStore (fora da stack) |
 | 2026-11-19 | Worker em `notification/` (raiz) | Depende de Android e da MainActivity; não é fonte de dados |
