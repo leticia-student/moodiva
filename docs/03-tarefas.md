@@ -107,6 +107,6 @@
 
 ## Validação
 
-### [ ] T17 — Validação final
+### [x] T17 — Validação final
 - **Descrição:** testes completos, teste ponta a ponta no emulador Medium Phone API 37 com capturas em `evidencias/`, README completo, tabela CA → verificação em `TEST_RESULTS.md`.
 - **Relacionado:** CA01–CA38 · **Commit:** `docs: registra validacao final`
