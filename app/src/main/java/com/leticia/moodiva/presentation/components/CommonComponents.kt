@@ -1,6 +1,8 @@
 package com.leticia.moodiva.presentation.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,7 +13,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -130,6 +134,25 @@ fun MoodivaLogo(modifier: Modifier = Modifier, large: Boolean = false) {
         style = if (large) MaterialTheme.typography.displayLarge else MaterialTheme.typography.displayMedium,
         color = MaterialTheme.colorScheme.primary,
         modifier = modifier,
+    )
+}
+
+/**
+ * Botão secundário da identidade visual (ex.: "Já ouvi"): `OutlinedButton` com borda
+ * `outline` e texto `primary`. O padrão atual do Material 3 usa `outlineVariant`.
+ */
+@Composable
+fun SecondaryButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    content: @Composable RowScope.() -> Unit,
+) {
+    OutlinedButton(
+        onClick = onClick,
+        modifier = modifier,
+        border = BorderStroke(Dimens.BorderWidth, MaterialTheme.colorScheme.outline),
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.primary),
+        content = content,
     )
 }
 

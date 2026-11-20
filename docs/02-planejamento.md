@@ -335,3 +335,4 @@ O padrão é o da skill `android-compose-screen`:
 | 2026-11-19 | Selo "Pelo seu humor" em `primaryContainer` e "Pelo seu gosto" em `secondaryContainer`, forma `small` | A identidade visual não define o selo; usa só papéis já existentes e distingue as fontes |
 | 2026-11-19 | Duração exibida no card ("4:21") | Dá uso real aos mappers de duração (segundos × milissegundos) exigidos pelo `CLAUDE.md` |
 | 2026-11-19 | Log HTTP de depuração com `api_key` ocultado (`redactQueryParams`) | O Last.fm exige a chave na URL; o nível BASIC registra a URL inteira |
+| 2026-11-19 | Componente `SecondaryButton` (borda `outline`, texto `primary`) | O `OutlinedButton` padrão do Material 3 atual usa `outlineVariant` e texto neutro, diferente da identidade visual |

@@ -96,7 +96,7 @@
 ### [x] T14 — Músicas salvas
 - **Relacionado:** RF19–RF21, RF26, CA27–CA30, CA38 · **Commit:** `feat: adiciona lista de musicas salvas`
 
-### [ ] T15 — Perfil e Sobre
+### [x] T15 — Perfil e Sobre
 - **Relacionado:** RF11, RF12, RF25, CA10, CA34 · **Commit:** `feat: adiciona perfil e tela sobre`
 
 ## Notificação
