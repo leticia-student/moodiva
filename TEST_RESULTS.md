@@ -120,3 +120,16 @@
 | Falhas | 0 |
 | Ignorados | 0 |
 | Correções aplicadas | Teste 'música marcada como ouvida' passou a conferir o estado final: o combine emite uma vez para a lista de salvas e outra para as recomendações. |
+
+---
+
+## 2026-11-19 20:17 — T14: músicas salvas (SavedViewModel)
+
+| Item | Valor |
+|---|---|
+| Comando | `./gradlew testDebugUnitTest` |
+| Total | 154 |
+| Aprovados | 154 |
+| Falhas | 0 |
+| Ignorados | 0 |
+| Correções aplicadas | Nenhuma |
