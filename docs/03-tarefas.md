@@ -84,7 +84,7 @@
 ### [x] T10 — Login e cadastro
 - **Relacionado:** RF01–RF03, CA01–CA04 · **Commit:** `feat: adiciona login e cadastro locais`
 
-### [ ] T11 — Onboarding (TIPI e gostos)
+### [x] T11 — Onboarding (TIPI e gostos)
 - **Relacionado:** RF04–RF10, RF12, CA05–CA09, CA11 · **Commit:** `feat: adiciona onboarding com teste tipi e gostos`
 
 ### [ ] T12 — Conversa guiada
