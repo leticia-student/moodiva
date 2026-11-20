@@ -44,10 +44,15 @@ val dataModule = module {
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
 
-        // Log só no build de depuração e só com método e status. Como o Last.fm exige a
-        // chave na URL, o log nunca é ligado no release.
+        // Log só no build de depuração (método, URL e status). O Last.fm exige a chave na
+        // URL, então o parâmetro `api_key` é ocultado no log ("██") e o log nunca liga no release.
         if (BuildConfig.DEBUG) {
-            builder.addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC })
+            builder.addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BASIC
+                    redactQueryParams(ApiKeyInterceptor.PARAM_API_KEY)
+                },
+            )
         }
         builder.build()
     }

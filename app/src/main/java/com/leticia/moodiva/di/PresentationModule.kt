@@ -4,6 +4,7 @@ import com.leticia.moodiva.presentation.MoodivaAppViewModel
 import com.leticia.moodiva.presentation.screens.auth.AuthViewModel
 import com.leticia.moodiva.presentation.screens.chat.ChatViewModel
 import com.leticia.moodiva.presentation.screens.onboarding.OnboardingViewModel
+import com.leticia.moodiva.presentation.screens.recommendations.RecommendationsViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
@@ -16,4 +17,18 @@ val presentationModule = module {
 
     // O modo vem da rota de navegação, passado pela tela com parametersOf(mode).
     viewModel { params -> OnboardingViewModel(mode = params.get(), get(), get(), get()) }
+
+    // Humor e modo vêm da rota de navegação, passados pela tela com parametersOf(mood, mode).
+    viewModel { params ->
+        RecommendationsViewModel(
+            mood = params.get(),
+            mode = params.get(),
+            observeRecommendations = get(),
+            observeSavedTracks = get(),
+            refreshRecommendations = get(),
+            loadCover = get(),
+            saveTrack = get(),
+            clock = get(),
+        )
+    }
 }
