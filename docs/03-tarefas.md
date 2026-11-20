@@ -101,7 +101,7 @@
 
 ## Notificação
 
-### [ ] T16 — Lembrete diário
+### [x] T16 — Lembrete diário
 - **Descrição:** Worker, canal, agendador, diálogo explicativo e permissão (Android 13+).
 - **Relacionado:** RF23, RF24, RN34, RN35, CA32, CA33 · **Commit:** `feat: adiciona lembrete diario`
 
