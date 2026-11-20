@@ -1,6 +1,5 @@
 package com.leticia.moodiva.presentation.screens.saved
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,7 +19,6 @@ import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -46,6 +44,7 @@ import com.leticia.moodiva.domain.model.ListenStatus
 import com.leticia.moodiva.domain.model.SavedTrack
 import com.leticia.moodiva.domain.model.Track
 import com.leticia.moodiva.domain.model.TrackSource
+import com.leticia.moodiva.presentation.components.SecondaryButton
 import com.leticia.moodiva.presentation.components.EmptyState
 import com.leticia.moodiva.presentation.components.ErrorState
 import com.leticia.moodiva.presentation.components.LoadingState
@@ -229,9 +228,8 @@ private fun SavedItem(saved: SavedTrack, actions: SavedActions) {
                 }
             }
             if (saved.status == ListenStatus.WANT_TO_LISTEN) {
-                OutlinedButton(
+                SecondaryButton(
                     onClick = { actions.onMarkListened(saved) },
-                    border = BorderStroke(Dimens.BorderWidth, MaterialTheme.colorScheme.outline),
                     modifier = Modifier.fillMaxWidth(),
                 ) { Text(stringResource(R.string.saved_mark_listened)) }
             } else {

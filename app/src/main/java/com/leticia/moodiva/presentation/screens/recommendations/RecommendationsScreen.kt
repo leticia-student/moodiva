@@ -22,7 +22,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -52,6 +51,7 @@ import com.leticia.moodiva.domain.model.Mood
 import com.leticia.moodiva.domain.model.RecommendedTrack
 import com.leticia.moodiva.domain.model.Track
 import com.leticia.moodiva.domain.model.TrackSource
+import com.leticia.moodiva.presentation.components.SecondaryButton
 import com.leticia.moodiva.presentation.components.EmptyState
 import com.leticia.moodiva.presentation.components.ErrorState
 import com.leticia.moodiva.presentation.components.LoadingState
@@ -248,7 +248,7 @@ private fun TrackCard(
                         .weight(1f)
                         .semantics { contentDescription = spotifyDescription },
                 ) { Text(stringResource(R.string.track_open_spotify)) }
-                OutlinedButton(
+                SecondaryButton(
                     onClick = onOpenYoutube,
                     modifier = Modifier
                         .weight(1f)
