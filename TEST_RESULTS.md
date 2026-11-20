@@ -146,3 +146,16 @@
 | Falhas | 0 |
 | Ignorados | 0 |
 | Correções aplicadas | Nenhuma |
+
+---
+
+## 2026-11-19 20:24 — T16: lembrete diário (NotificationScheduler)
+
+| Item | Valor |
+|---|---|
+| Comando | `./gradlew testDebugUnitTest` |
+| Total | 158 |
+| Aprovados | 158 |
+| Falhas | 0 |
+| Ignorados | 0 |
+| Correções aplicadas | Nenhuma |

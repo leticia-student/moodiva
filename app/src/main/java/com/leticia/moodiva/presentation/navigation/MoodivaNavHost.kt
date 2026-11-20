@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.leticia.moodiva.domain.model.ConversationMode
 import com.leticia.moodiva.domain.model.Mood
+import com.leticia.moodiva.notification.NotificationPermissionPrompt
 import com.leticia.moodiva.presentation.AppStartState
 import com.leticia.moodiva.presentation.components.MoodivaLogo
 import com.leticia.moodiva.presentation.screens.home.HomeScreen
@@ -61,11 +62,15 @@ fun MoodivaNavHost(
             HomeScreen(
                 tabContent = { tab, selectTab ->
                     when (tab) {
-                        HomeTab.CHAT -> ChatScreenRoute(
-                            onShowRecommendations = { mood, mode ->
-                                navController.navigate(RecommendationsRoute(mood.name, mode.name))
-                            },
-                        )
+                        HomeTab.CHAT -> {
+                            ChatScreenRoute(
+                                onShowRecommendations = { mood, mode ->
+                                    navController.navigate(RecommendationsRoute(mood.name, mode.name))
+                                },
+                            )
+                            // Depois do onboarding, na conversa: explica e pede a permissão (RF24).
+                            NotificationPermissionPrompt()
+                        }
                         HomeTab.SAVED -> SavedScreenRoute(onGoToChat = { selectTab(HomeTab.CHAT) })
                         HomeTab.PROFILE -> ProfileScreenRoute(
                             onRetakeTest = { navController.navigate(OnboardingRoute(OnboardingMode.RETAKE_TEST.name)) },
