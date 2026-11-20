@@ -87,7 +87,7 @@
 ### [x] T11 — Onboarding (TIPI e gostos)
 - **Relacionado:** RF04–RF10, RF12, CA05–CA09, CA11 · **Commit:** `feat: adiciona onboarding com teste tipi e gostos`
 
-### [ ] T12 — Conversa guiada
+### [x] T12 — Conversa guiada
 - **Relacionado:** RF13, RF14, CA12–CA15 · **Commit:** `feat: adiciona conversa guiada`
 
 ### [ ] T13 — Recomendações

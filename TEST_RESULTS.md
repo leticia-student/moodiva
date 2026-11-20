@@ -94,3 +94,16 @@
 | Falhas | 0 |
 | Ignorados | 0 |
 | Correções aplicadas | Nenhuma |
+
+---
+
+## 2026-11-19 20:08 — T12: conversa guiada (ChatViewModel)
+
+| Item | Valor |
+|---|---|
+| Comando | `./gradlew testDebugUnitTest` |
+| Total | 139 |
+| Aprovados | 139 |
+| Falhas | 0 |
+| Ignorados | 0 |
+| Correções aplicadas | Nenhuma |
