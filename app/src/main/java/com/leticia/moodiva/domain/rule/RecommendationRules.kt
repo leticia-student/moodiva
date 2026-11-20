@@ -165,12 +165,15 @@ object TasteSourceRanker {
         fun tagsOf(candidate: TasteCandidate) =
             detailsByKey[candidate.track.key]?.tags.orEmpty().map(TextNormalizer::normalize)
 
-        return candidates
+        val (withMoodTag, withoutMoodTag) = candidates
             .sortedWith(
-                compareByDescending<TasteCandidate> { candidate -> tagsOf(candidate).any { it in normalizedMoodTags } }
-                    .thenByDescending { it.artistMatch }
+                compareByDescending<TasteCandidate> { it.artistMatch }
                     .thenByDescending { ExtraversionTiebreak.score(extraversion, tagsOf(it)) },
             )
+            .partition { candidate -> tagsOf(candidate).any { it in normalizedMoodTags } }
+
+        // Quem tem tag do humor vem primeiro; dentro de cada grupo, os artistas se alternam.
+        return (spreadArtists(withMoodTag) + spreadArtists(withoutMoodTag))
             .map { candidate ->
                 val details = detailsByKey[candidate.track.key]
                 RecommendedTrack(
@@ -183,6 +186,16 @@ object TasteSourceRanker {
                     coverChecked = candidate.track.key in detailsByKey,
                 )
             }
+    }
+
+    /**
+     * Alterna os artistas mantendo a ordem relativa: 1ª música de cada artista, depois
+     * a 2ª de cada… Evita três músicas seguidas do mesmo artista no topo da lista.
+     */
+    fun spreadArtists(candidates: List<TasteCandidate>): List<TasteCandidate> {
+        val byArtist = candidates.groupBy { TextNormalizer.normalize(it.track.artist) }.values
+        val maxDepth = byArtist.maxOfOrNull { it.size } ?: 0
+        return (0 until maxDepth).flatMap { depth -> byArtist.mapNotNull { it.getOrNull(depth) } }
     }
 }
 
