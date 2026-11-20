@@ -5,6 +5,7 @@ import com.leticia.moodiva.presentation.screens.auth.AuthViewModel
 import com.leticia.moodiva.presentation.screens.chat.ChatViewModel
 import com.leticia.moodiva.presentation.screens.onboarding.OnboardingViewModel
 import com.leticia.moodiva.presentation.screens.recommendations.RecommendationsViewModel
+import com.leticia.moodiva.presentation.screens.saved.SavedViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
@@ -14,6 +15,7 @@ val presentationModule = module {
     viewModelOf(::MoodivaAppViewModel)
     viewModelOf(::AuthViewModel)
     viewModelOf(::ChatViewModel)
+    viewModelOf(::SavedViewModel)
 
     // O modo vem da rota de navegação, passado pela tela com parametersOf(mode).
     viewModel { params -> OnboardingViewModel(mode = params.get(), get(), get(), get()) }

@@ -93,7 +93,7 @@
 ### [x] T13 — Recomendações
 - **Relacionado:** RF15–RF18, CA16–CA26 · **Commit:** `feat: adiciona tela de recomendacoes`
 
-### [ ] T14 — Músicas salvas
+### [x] T14 — Músicas salvas
 - **Relacionado:** RF19–RF21, RF26, CA27–CA30, CA38 · **Commit:** `feat: adiciona lista de musicas salvas`
 
 ### [ ] T15 — Perfil e Sobre
