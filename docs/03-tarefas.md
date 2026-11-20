@@ -90,7 +90,7 @@
 ### [x] T12 — Conversa guiada
 - **Relacionado:** RF13, RF14, CA12–CA15 · **Commit:** `feat: adiciona conversa guiada`
 
-### [ ] T13 — Recomendações
+### [x] T13 — Recomendações
 - **Relacionado:** RF15–RF18, CA16–CA26 · **Commit:** `feat: adiciona tela de recomendacoes`
 
 ### [ ] T14 — Músicas salvas
