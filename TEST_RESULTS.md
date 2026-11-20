@@ -81,3 +81,16 @@
 | Falhas | 0 |
 | Ignorados | 0 |
 | Correções aplicadas | Nenhuma |
+
+---
+
+## 2026-11-19 20:05 — T11: onboarding (OnboardingViewModel)
+
+| Item | Valor |
+|---|---|
+| Comando | `./gradlew testDebugUnitTest` |
+| Total | 132 |
+| Aprovados | 132 |
+| Falhas | 0 |
+| Ignorados | 0 |
+| Correções aplicadas | Nenhuma |
