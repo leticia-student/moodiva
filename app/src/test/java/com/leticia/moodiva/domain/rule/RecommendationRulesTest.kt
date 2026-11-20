@@ -166,6 +166,22 @@ class TasteSourceRankerTest {
     }
 }
 
+class TasteSpreadTest {
+
+    @Test
+    fun `artistas devem se alternar sem perder a ordem de cada um`() {
+        val a1 = TasteCandidate(track("A1", "Gil"), 0.9)
+        val a2 = TasteCandidate(track("A2", "Gil"), 0.9)
+        val a3 = TasteCandidate(track("A3", "Gil"), 0.9)
+        val b1 = TasteCandidate(track("B1", "Gal"), 0.7)
+        val c1 = TasteCandidate(track("C1", "Chico"), 0.5)
+
+        val spread = TasteSourceRanker.spreadArtists(listOf(a1, a2, a3, b1, c1))
+
+        assertEquals(listOf("A1", "B1", "C1", "A2", "A3"), spread.map { it.track.name })
+    }
+}
+
 class RecommendationMergerTest {
 
     @Test
