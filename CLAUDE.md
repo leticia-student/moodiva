@@ -240,9 +240,10 @@ com.leticia.moodiva/
 │   ├── remote/            # LastFmApi, DTOs, interceptor da chave
 │   ├── auth/              # autenticação local: hash de senha e sessão
 │   ├── local/             # AppDatabase, DAOs, entidades (inclui cache de gêneros dos artistas)
-│   ├── notification/      # Worker da notificação diária
 │   ├── mapper/
 │   └── repository/        # implementações
+├── notification/          # Worker, canal e agendamento da notificação diária
+│                          # (depende de Android; ver docs/02-planejamento.md, seção 2)
 └── presentation/
     ├── navigation/
     ├── theme/
