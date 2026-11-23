@@ -316,6 +316,7 @@ O usuário escolhe **ao menos 1** gênero. Cada gênero exibido corresponde a um
 | 2026-11-19 | Atribuição como botão de texto "powered by AudioScrobbler" com link para last.fm. | O antigo endereço de imagens oficiais (last.fm/resources) não está mais disponível; o texto e o link cumprem a cláusula 2.7. |
 | 2026-11-19 | Remoção de música salva com confirmação (RF26). | Permite corrigir um salvamento por engano sem perder dados por toque acidental. |
 | 2026-11-19 | No máximo 4 requisições simultâneas ao Last.fm; uso não comercial. | Os termos não fixam um número (cláusula 4.4); o app é acadêmico e não comercial (cláusula 3.1). |
+| 2026-11-23 | Backup automático desligado (`allowBackup="false"`) e todos os dados excluídos do backup na nuvem e da transferência entre aparelhos. | O perfil fica só no aparelho, sem nuvem (RNF08); o hash da senha não sai do aparelho; ao reinstalar, o usuário refaz o teste, como documentado. |
 
 ## 11. Pontos de atenção para a responsável
 
