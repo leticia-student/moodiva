@@ -42,6 +42,11 @@ Escolher o que ouvir para um estado de espírito específico dá trabalho, e as 
 
 [Last.fm API](https://www.last.fm/api) é a única API de música do app. Ela é gratuita para uso não comercial e tem **tags colaborativas de humor** (happy, sad, chill…), **artistas similares** com grau de semelhança e capas reais via `track.getInfo`.
 
+**Por que o Last.fm:** a ideia central do app é recomendar por humor, e o Last.fm é a API pública que organiza músicas por tags de clima atribuídas pelos próprios ouvintes. As alternativas foram descartadas:
+
+- **API do Spotify:** desde novembro de 2024 não oferece mais recomendações nem características de áudio (como valência e energia) para apps novos, além de exigir login OAuth do usuário.
+- **Deezer:** foi avaliado no spike apenas para obter capas, mas o `track.getInfo` do Last.fm já fornece capas reais. Uma segunda API aumentaria a complexidade sem ganho.
+
 Métodos usados: `tag.getTopTracks`, `artist.getTopTags`, `artist.getSimilar`, `artist.getTopTracks` e `track.getInfo`. As particularidades do JSON (duração em segundos × milissegundos, números como texto, placeholder de imagem, erro com HTTP 200) estão em `docs/02-planejamento.md`, seção 3.3, e são cobertas por testes com respostas reais.
 
 ### Estratégia de recomendação
