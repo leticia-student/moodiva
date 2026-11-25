@@ -101,6 +101,16 @@ A chave vira `BuildConfig.LASTFM_API_KEY` e é acrescentada às requisições po
 
 Testado no emulador **Medium Phone API 37**.
 
+### APK de depuração
+
+O APK pronto (`moodiva-debug.apk`, versão de depuração, sem assinatura de distribuição) está anexado na **Release** do repositório no GitHub (aba *Releases*). Para instalar num aparelho ou emulador:
+
+```bash
+adb install moodiva-debug.apk
+```
+
+O arquivo não fica versionado no Git: o APK precisa da chave do Last.fm para buscar músicas, e a chave nunca entra no histórico do repositório. Para gerar o seu próprio APK, configure a chave (seção anterior) e rode `./gradlew assembleDebug`.
+
 ## Testes
 
 ```bash

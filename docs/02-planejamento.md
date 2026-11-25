@@ -337,3 +337,4 @@ O padrão é o da skill `android-compose-screen`:
 | 2026-11-19 | Log HTTP de depuração com `api_key` ocultado (`redactQueryParams`) | O Last.fm exige a chave na URL; o nível BASIC registra a URL inteira |
 | 2026-11-19 | Componente `SecondaryButton` (borda `outline`, texto `primary`) | O `OutlinedButton` padrão do Material 3 atual usa `outlineVariant` e texto neutro, diferente da identidade visual |
 | 2026-11-19 | Na fonte "Pelo seu gosto", artistas alternados após o ranking (`spreadArtists`) | No teste no aparelho, o artista de maior `match` ocupava os três primeiros cards; alternar mantém a prioridade da tag do humor e dá variedade |
+| 2026-11-24 | APK de depuração entregue como anexo da Release do GitHub, não versionado (`/entregaveis/*.apk` no `.gitignore`) | O APK embute a chave do Last.fm no `BuildConfig`; versioná-lo poria a chave no histórico do Git |
